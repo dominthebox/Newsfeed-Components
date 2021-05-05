@@ -116,7 +116,7 @@ const data = [
 */
 const articles = document.querySelector('div.articles');
 
-function articleMaker(object) {
+function articleMaker(obj) {
   const article = document.createElement('div');
   const artTitle = document.createElement('h2');
   const artDate = document.createElement('p');
@@ -139,6 +139,12 @@ function articleMaker(object) {
   artP3.classList.add('p3');
   expandButton.classList.add('expandButton');
 
+  artTitle.textContent = obj.title;
+  artDate.textContent = obj.date;
+  artP1.textContent = obj.p1;
+  artP2.textContent = obj.p2;
+  artP3.textContent = obj.p3;
+
   expandButton.addEventListener('click', (event) => {
     article.classList.toggle('toggle-on');
   })
@@ -146,3 +152,11 @@ function articleMaker(object) {
   return article;
 
 }
+
+const articleElements = data.map((articleItem) => {
+  return articleMaker();
+});
+
+articleElements.forEach((articleItem) => {
+  articles.appendChild(articleItem);
+});
