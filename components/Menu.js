@@ -40,16 +40,17 @@ function menuMaker(array){
   const menuButton = document.querySelector('.menu-button');
 
   menu.appendChild(ul);
+
   menu.classList.add('menu');
 
   array.map(listItem => {
-    const newListItem = document.createElement('li');
+    const newListItem = document.createElement('li')
     newListItem.textContent = listItem
     ul.appendChild(newListItem)
   })
 
   menuButton.addEventListener('click', (event) => {
-    menu.classList.toggle('menu-open')
+    menu.classList.toggle('menu--open')
   })
 
   return menu
