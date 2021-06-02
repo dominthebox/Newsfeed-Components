@@ -86,6 +86,15 @@ const data = [
     thirdParagraph: `Hodor hodor - hodor... Hodor hodor hodor hodor. Hodor. Hodor! Hodor hodor, hodor hodor hodor hodor hodor; hodor hodor? Hodor!
           Hodor hodor, HODOR hodor, hodor hodor?! Hodor! Hodor hodor, HODOR hodor, hodor hodor, hodor, hodor hodor. Hodor, hodor.
           Hodor. Hodor, hodor, hodor. Hodor hodor... Hodor hodor hodor?! Hodor, hodor... Hodor hodor HODOR hodor, hodor hodor. Hodor.`
+  },
+  {
+    title: 'How to Code Properly',
+    date: 'June 2nd, 2021',
+    firstParagraph: `All copy/paste and no typing makes new coder a dull boy.`,
+
+    secondParagraph: `Build more code, write more code, study more code.`,
+
+    thirdParagraph: `Look ahead at new code to come!`
   }
 ];
 
@@ -114,3 +123,51 @@ const data = [
   Step 5: Try adding new article object to the data array. Make sure it is in the same format as the others.
   Refresh the page to see the new article.
 */
+
+const articles = document.querySelector('div.articles');
+
+function articleMaker(obj) {
+  const article = document.createElement('div');
+  const artTitle = document.createElement('h2');
+  const artDate = document.createElement('p');
+  const artP1 = document.createElement('p');
+  const artP2 = document.createElement('p');
+  const artP3 = document.createElement('p');
+  const expandButton = document.createElement('span');
+
+  article.appendChild(artTitle);
+  article.appendChild(artDate);
+  article.appendChild(artP1);
+  article.appendChild(artP2);
+  article.appendChild(artP3);
+  article.appendChild(expandButton);
+
+  article.classList.add('article');
+  artDate.classList.add('date');
+  artP1.classList.add('p1');
+  artP2.classList.add('p2');
+  artP3.classList.add('p3');
+  expandButton.classList.add('expandButton');
+
+  artTitle.textContent = obj.title;
+  artDate.textContent = obj.date;
+  artP1.textContent = obj.firstParagraph;
+  artP2.textContent = obj.secondParagraph;
+  artP3.textContent = obj.thirdParagraph;
+  expandButton.textContent = '+';
+
+  expandButton.addEventListener('click', () => {
+    article.classList.toggle('article-open');
+  })
+
+  return article;
+
+}
+
+const articleElements = data.map((articleItem) => {
+  return articleMaker(articleItem);
+});
+
+articleElements.forEach((articleItem) => {
+  articles.appendChild(articleItem);
+});
